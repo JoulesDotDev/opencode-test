@@ -27,7 +27,15 @@ const channel = (() => {
   return "dev"
 })()
 
-const shouldUseWindowsSignScript = process.platform === "win32" && process.env.GITHUB_ACTIONS === "true"
+// Signing is entirely optional: only sign when Azure Trusted Signing creds are present.
+// Without them, no sign hook is registered and the build produces an unsigned installer.
+const signingConfigured = Boolean(
+  process.env.AZURE_TRUSTED_SIGNING_ENDPOINT &&
+    process.env.AZURE_TRUSTED_SIGNING_ACCOUNT_NAME &&
+    process.env.AZURE_TRUSTED_SIGNING_CERTIFICATE_PROFILE,
+)
+const shouldUseWindowsSignScript =
+  process.platform === "win32" && process.env.GITHUB_ACTIONS === "true" && signingConfigured
 const shouldEditWindowsExecutable = process.env.OPENCODE_EDIT_EXECUTABLE !== "false"
 const outputDir = process.env.OPENCODE_ELECTRON_OUTPUT_DIR?.trim() || "dist"
 const changelog = path.join(rootDir, "changelog.md")
