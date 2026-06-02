@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"bun run typecheck 2>&1\",\"description\":\"Run final typecheck\"}",
+  "error": "Exit code 2\n$ tsgo --noEmit\nsrc/mcp/index.ts(180,33): error TS2551: Property 'decodeUnknownEither' does not exist on type 'typeof import(\"/Users/joules/Development/opencode/original/node_modules/.bun/effect@4.0.0-beta.66/node_modules/effect/dist/Schema\")'. Did you mean 'decodeUnknownExit'?\ntest/server/httpapi-mcp-oauth.test.ts(19,3): error TS2322: Type 'Effect<Handlers<Authorization | InstanceContextMiddleware | Service | WorkspaceRoutingMiddleware, HttpApiEndpoint<...>>, never, never>' is not a...",
+  "timestamp": "2026-06-02T12:01:51.314Z",
+  "retry_count": 1
+}
